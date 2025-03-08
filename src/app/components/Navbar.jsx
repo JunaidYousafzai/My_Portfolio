@@ -1,16 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 const Navbar = () => {
   const navRef = useRef(null);
   const linksRef = useRef([]);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const tl = gsap.timeline();
-
 
     tl.from(navRef.current, {
       y: -50,
@@ -18,7 +18,6 @@ const Navbar = () => {
       duration: 1,
       ease: "power2.out",
     });
-
 
     tl.from(
       linksRef.current,
@@ -33,16 +32,28 @@ const Navbar = () => {
     );
   }, []);
 
+  // Function to toggle mobile menu
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
-    <header ref={navRef} className="p-4 font-[Reospec]  bg-coolGray-100  w-full">
+    <header
+      ref={navRef}
+      className="p-4 font-[Reospec] bg-coolGray-100 w-full"
+    >
       <div className="container flex justify-between h-16 mx-auto">
-        <Link href="/" aria-label="Back to homepage" className="flex items-center p-2 ">
-          {/* <img src="https://see.fontimg.com/api/rf5/VG3V0/ZmRmYzNhN2YzNDgyNDM5NmIxMTY3YzY1MDJlNTEzYTcudHRm/SnVuYWlk/black-junkiest.png?r=fs&h=50&w=1000&fg=FFFFFF&bg=FFFFFF&tb=1&s=50" alt="" /> */}
-          <h1 className="font-[Reospec] lg:text-4xl font-extrabold text-teal-400">Junaid.</h1>
+        <Link
+          href="/"
+          aria-label="Back to homepage"
+          className="flex items-center p-2 "
+        >
+          <h1 className="font-[Reospec] lg:text-4xl font-extrabold text-teal-400">
+            Junaid.
+          </h1>
         </Link>
 
-
-        <ul className="items-stretch hidden space-x-3 lg:flex ">
+        <ul className="items-stretch hidden space-x-3 lg:flex">
           {["about", "projects", "contact"].map((item, index) => (
             <li key={item} className="flex">
               <Link
@@ -56,7 +67,10 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <button className="p-4 lg:hidden">
+        <button
+          onClick={toggleMobileMenu}
+          className="p-4 lg:hidden focus:outline-none"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -64,10 +78,32 @@ const Navbar = () => {
             stroke="currentColor"
             className="w-6 h-6 text-coolGray-800"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
           </svg>
         </button>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <ul className="lg:hidden bg-coolGray-100">
+          {["about", "projects", "contact"].map((item) => (
+            <li key={item} className="border-b border-coolGray-300">
+              <Link
+                href={`/${item}`}
+                className="block py-2 px-4 hover:bg-coolGray-200"
+                onClick={() => setIsMobileMenuOpen(false)} // Close menu on link click
+              >
+                {item.charAt(0).toUpperCase() + item.slice(1)}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </header>
   );
 };
