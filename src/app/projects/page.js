@@ -9,19 +9,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    title: "Hospital Management System",
+    title: "Job Posting App",
     description:
-      "A full-stack application for managing hospital operations using React, Node.js, and MongoDB.",
+      "A full-stack application for managing Job using React, Node.js, and MongoDB.",
     techStack: ["React", "Node.js", "MongoDB"],
-    github: "https://github.com/JunaidYousafzai/hospital-management",
+    github: "https://github.com/JunaidYousafzai/Shrood-Job-Posting-app",
     live: "#",
   },
   {
-    title: "Finance App",
+    title: "Ecommerce WebApp",
     description:
-      "A finance management app with loan categories built using MERN stack.",
+      "An Ecommmerce  app with Products categories built using MERN stack.",
     techStack: ["React", "Node.js", "MongoDB"],
-    github: "https://github.com/JunaidYousafzai/finance-app",
+    github: "https://github.com/JunaidYousafzai/Ecomm-WebApp",
     live: "#",
   },
   {
