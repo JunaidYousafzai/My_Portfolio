@@ -86,13 +86,7 @@ const ProjectsPage = () => {
               >
                 <FaGithub className="w-6 h-6" />
               </a>
-              <a
-                href={project.live}
-                target="_blank"
-                className="hover:text-teal-400 transition"
-              >
-                <FaExternalLinkAlt className="w-6 h-6" />
-              </a>
+
             </div>
           </div>
         ))}
